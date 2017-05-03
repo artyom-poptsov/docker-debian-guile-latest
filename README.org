@@ -1,0 +1,5 @@
+* Description
+  Dockerfile for Debian distribution with the the latest [[https://www.gnu.org/software/guile/][GNU Guile]]
+  version installed.
+* License
+  GNU General Public License v3 or later.
