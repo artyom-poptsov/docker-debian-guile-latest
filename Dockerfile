@@ -52,7 +52,7 @@ RUN autoreconf \
     --verbose \
     --install \
     --force
-RUN configure
+RUN ./configure
 RUN make
 RUN make \install
 
