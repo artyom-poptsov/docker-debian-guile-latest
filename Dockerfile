@@ -12,6 +12,7 @@ RUN apt-get update -qq apt-get -qqy install \
     g++ \
     libtool \
     gettext \
+    texinfo \
     flex \
     pkg-config \
     libgmp-dev \
