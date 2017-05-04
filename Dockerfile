@@ -4,7 +4,7 @@
 FROM debian:latest
 MAINTAINER Artyom V. Poptsov <poptsov.artyom@gmail.com>
 
-RUN apt-get update -qq apt-get -qqy install \
+RUN apt-get update -qq && apt-get -qqy install \
     autoconf \
     automake \
     make \
