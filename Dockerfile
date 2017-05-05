@@ -35,7 +35,7 @@ RUN git clone https://github.com/ivmai/bdwgc.git
 WORKDIR /home/guile-user/src/dist/bdwgc/
 RUN git checkout gc7_6_0
 RUN ./autogen.sh
-RUN ./configure
+RUN ./configure --prefix=/usr
 RUN make install
 
 
