@@ -81,4 +81,7 @@ RUN ./configure
 RUN LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):/usr/local/lib make
 RUN make \install
 
+RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local.conf
+RUN ldconfig
+
 ### Dockerfile ends here.
