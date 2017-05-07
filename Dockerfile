@@ -91,7 +91,7 @@ RUN ldconfig
 
 ### This image would be unfinished without GNU Emacs.
 
-RUN apt-get install -qqy emacs-nox
+RUN apt-get install -qqy emacs-nox geiser
 
 
 ### Go back to the home dir.
