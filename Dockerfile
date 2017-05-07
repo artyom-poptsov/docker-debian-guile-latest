@@ -67,6 +67,7 @@ WORKDIR /home/guile-user/src/dist/
 RUN git clone https://git.libssh.org/projects/libssh.git libssh
 RUN [ -d ./libssh/build ] || mkdir -p ./libssh/build
 WORKDIR /home/guile-user/src/dist/libssh/build
+RUN git checkout libssh-0.7.3
 RUN cmake ../
 RUN make
 RUN make install
