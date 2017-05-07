@@ -4,6 +4,9 @@
 FROM debian:latest
 MAINTAINER Artyom V. Poptsov <poptsov.artyom@gmail.com>
 
+
+### Install basic packages.
+
 RUN apt-get update -qq && apt-get -qqy install \
     autoconf \
     automake \
@@ -28,7 +31,7 @@ RUN [ -d /home/guile-user/src/dist/ ] || mkdir -p /home/guile-user/src/dist/
 
 WORKDIR /home/guile-user/src/dist/
 
-
+
 ### Install Boehm GC needed for GNU Guile.
 
 RUN git clone https://github.com/ivmai/bdwgc.git
@@ -38,7 +41,7 @@ RUN ./autogen.sh
 RUN ./configure --prefix=/usr
 RUN make install
 
-
+
 ### Install the latest GNU Guile version.
 
 WORKDIR /home/guile-user/src/dist/
@@ -56,7 +59,7 @@ RUN ./configure
 RUN make
 RUN make \install
 
-
+
 ### Install the latest libssh version.
 
 RUN apt-get -qqy install cmake libssl-dev
@@ -68,7 +71,7 @@ RUN cmake ../
 RUN make
 RUN make install
 
-
+
 ### Clone the Guile-SSH repository.
 
 WORKDIR /home/guile-user/src/dist/
@@ -83,5 +86,15 @@ RUN make \install
 
 RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local.conf
 RUN ldconfig
+
+
+### This image would be unfinished without GNU Emacs.
+
+RUN apt-get install -qqy emacs-nox
+
+
+### Go back to the home dir.
+
+WORKDIR /home/guile-user/
 
 ### Dockerfile ends here.
