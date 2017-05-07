@@ -56,11 +56,29 @@ RUN ./configure
 RUN make
 RUN make \install
 
+
+### Install the latest libssh version.
+
+RUN apt-get -qqy install cmake libssl-dev
+WORKDIR /home/guile-user/src/dist/
+RUN git clone https://git.libssh.org/projects/libssh.git libssh
+RUN [ -d ./libssh/build ] || mkdir -p ./libssh/build
+WORKDIR /home/guile-user/src/dist/libssh/build
+RUN cmake ../
+RUN make
+RUN make install
+
+
 ### Clone the Guile-SSH repository.
 
 WORKDIR /home/guile-user/src/dist/
 
 # Pull the Guile-SSH repository.
 RUN git clone https://github.com/artyom-poptsov/guile-ssh.git
+WORKDIR /home/guile-user/src/dist/guile-ssh/
+RUN autoreconf -vif
+RUN ./configure
+RUN LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):/usr/local/lib make
+RUN make \install
 
 ### Dockerfile ends here.
